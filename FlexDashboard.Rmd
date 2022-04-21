@@ -1,0 +1,243 @@
+---
+title: "Google Bike Capstone Project - Terrell Breaux"
+output: flexdashboard::flex_dashboard
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+```
+
+# Introduction {.storyboard}
+
+### Introduction
+
+**Introduction**
+
+Cyclistic is a successful bike-share company that has grown to a fleet of 5,284 bicycles that are geotracked and locked into a network of stations across Chicago. These bikes can be unlocked from any one station and returned to any other station in the network anytime.
+
+It has been determined by financial analysts that the key to maximizing company profits and future growth is to increase the number of annual memberships. One way to do this is to convert casual users to annual members.
+
+This case study reviews Cyclistic's bike-share ride data to determine answers to key business questions by comparing annual membership data with casual rider data. Questions this study hopes to answer are as follows:
+
+• How do annual members differ from casual riders? • How to these two categories of riders utilize bicycles differently?
+
+• What is the cause of the decline in annual memberships and incline of casual riders?
+
+• How can we advertise/market to turn the tides, and increase annual members by having casual users buy memberships?
+
+```{r}
+
+```
+
+### Key Players
+
+**Key Players**
+
+***Cyclistic:*** A bike-share program that features more than 5,800 bicycles and 600 docking stations. Cyclistic sets itself apart by also offering reclining bikes, hand tricycles, and cargo bikes, making bike-share more inclusive to people with disabilities and riders who can't use a standard two-wheeled bike. The majority of riders opt for traditional bikes; about 8% of riders use the assistive options. Cyclistic users are more likely to ride for leisure, but about 30% use them to commute to work each day.
+
+***Cyclistic executive team:*** Decision makers who are ultimately responsible for the future of the companhy. In this instance, responsibilities are to offer guidance, and choose whether to approve the recommended marketing program.
+
+***Lily Moreno:*** Director of marketing. responsible for the development of campaigns and initiatives to promote the bike-share program. These may include email, social media, and other channels.
+
+***Cyclistic marketing analytics team:*** A team of data analysts who are responsible for collecting, analyzing, and reporting data that helps guide Cyclistic marketing strategy.
+
+```{r}
+
+```
+
+# Data Sources {.storyboard}
+
+### Sources
+
+The data provided includes trip and station information, and spans the history of the organization. This data is in the form of .csv files.
+
+**Trip data** begins in June 2013, and goes through February 2022 Although the data provided isn't totally consistent from year to year, there are some consistencies to include:
+
+-   Trip ID: A distinct numeric code from each trip
+
+-   Start time: Year, Month, Day, Hour, Minute, and seconds End time: Year, Month, Day, Hour, Minute, and seconds
+
+-   Station ID: A distinct numeric, or alpha-numeric code for each station
+
+-   Start Station name, or From Station: Street intersection indicating the station's location
+
+-   End Station name, or To Station: Street intersection indicating the station's location
+
+-   User Type, or Member_Casual: indicates whether the user is an annual subscriber, or casual user
+
+\* Note - Some additional information not provided for all years , but is utilized through the use of functions, or only information in later years are trip duration, and bike type.
+
+**Station Data** provides information on each station, and provides details on how many bike spaces are at each location. However, the data provided was last dated 2017. Since this time, there have been many changes to include the addition of different bike types and some station closures and openings. Rather than utilize outdated information, I chose to utilize the last 12 months of trip data to determine all start stations used during this time frame. The bike capacity was not as of major concern as this information does not help to understand the difference between members and casual users.
+
+```{r}
+
+```
+
+### Limitations
+
+As mentioned earlier, there are some inconsistencies in the source data provided. These inconsistencies include different column headers, some duplicate data, and some N/As.
+
+One major limitation experienced was with the amount of data that spanned the 9 years the company has been in business. With these files being provided in the .csv format, Microsoft Excel was initially utilized to explore the data. However, Excel has its own limitation with the total number of rows it can efficiently store, and operates poorly when attempting to combine information or modify data to standardize headers, identify and eliminate duplicates, or Non-Applicable inputs, etc. Instead of performing an initial scrub with excel, I decided to work with all data using RStudio.
+
+RStudio is a powerful program that contains all of the features to manipulate, combine, and analyze the source data provided, and also has some unique visualization tools to help digest the data and identify likenesses and anomalies. However, the limitations with RStudio fall much more with the person than the program. In this case, my lack of experience with R caused some delays, but resulted in a much more refined product than utilizing any other data analytic tools I'm aware of. In the end, I was able to refine all of the data provided, build some great visualizations to help understand the findings, arrive at a conclusion, and even wrap all of the findings into this dashboard style report.
+
+```{r}
+
+```
+
+### Assumptions
+
+The greatest assumption is that all of the data provided is accurate. However, there are some details that would be very helpful if additional information were provided. These details are as follows:
+
+-   User purpose in renting the bike (commute to work/home, exercise, recreation, sight-seeing, etc.
+
+-   User's home zip code, or a yes/no station whether the user resides in Chicago for the majority of the year.
+
+-   User's annual income/earnings group.
+
+Answering questions such as these could result in a privacy or security concern, and may be an optional choice for those willing to answer, but would greatly help to understand the typical user and purpose. Zip code on the other hand could be as simple as storing the billing zip information, and by itself may not violate privacy policies. This would really help to correlate local members/casual users from visitors.
+
+```{r}
+
+```
+
+### Data
+
+The source data was compiled into RStudio, and ran through a script to bind all of the tables together by year, eliminate any non-pertinent information, perform math functions, etc. As this script was being created, there were many inconsistencies identified, resulting in additional script modifications to have all related data standardized. As a result of this data analysis, visualizations were developed to help simplify the overwhelming amount of information, and understand correlations.
+
+To give an understanding of how much data was provided, and analyzed, there are more than 30.4 million rows of trip data
+
+As mentioned, this data was manipulated heavily to clean, compile, and to work into useable data files of which to analyze, and build visualizations from.  for detailed information, to view the entire project to include .csv exports, scripts, and everything that went into executing this project, follow this link.  
+
+```{r}
+
+```
+
+# Observations {.storyboard}
+
+### Overview
+
+With the large amount of data provided, there are many areas to review and endless options to display that data. It is easy to get sidetracked while analyzing, and therefore is extremely important to remain focused on the questions at hand. However, there are times that data presents itself in a manor that illustrates additional concerns revealing new areas of focus. There were some occasions where this happened during this case study, and it proved useful to follow where the data led.
+
+Some places where the data stood out were:
+
+-   Locations which helped to provide an understanding of where all of the stations are located, and which ones were used most by members or casual users.
+
+-   Total ride comparisons from 2013 to present, and not only the last 12 months
+
+-   Days of the week members most utilize the bike share vs casual users
+
+-   Trip duration for members vs casual users.
+
+-   Information in the last 12 months.
+
+
+```{r}
+
+```
+
+### Map
+
+```{r}
+map
+```
+
+------------------------------------------------------------------------
+
+**Interactive map of stations and ride information**
+
+This map displays clustered locations of each station within the chicago area. by scrolling into the area, or clicking on a cluster, you can zoom in farther until a marker appears. By pointing at the marker, you can see the station name. By clicking on each marker, you can see the number of times bicycles were signed out of the location by subscribed members and casual users.
+
+-   Clusters give total count of stations within the clustered area. 853 total stations in Chicago
+
+-   The count provided is the number of times rides were started from that station per user type within the last 12 months (Mar 2021 - Feb 2022)
+
+```{r}
+
+```
+
+------------------------------------------------------------------------
+
+**General Observations using this map and data points**
+
+-   Stations are less concentrated in more rural areas
+
+-   Total ride counts increase drastically in business districts and around the coast
+
+-   Member ride counts are typically higher than casual at stations located in busy city areas and more rural areas
+
+-   Casual ride counts are typically higher than member at stations where recreational activity exists (tourist attractions, parks, coastline, museums, etc.
+
+```{r}
+
+```
+
+### 2013-2022 total ride comparisons
+
+```{r fig.height=7, fig.width=13}
+year_month_member_rides_plot
+```
+
+------------------------------------------------------------------------
+
+*\~ "**Know** from whence you came. If you know whence you came, there are absolutely no limitations to where you can go." ― James Baldwin*
+
+-   This chart shows a history of all rides from the company's inception in 2013.
+
+------------------------------------------------------------------------
+
+**Evolving Paterns**
+
+-   Historically, member ride counts have been higher than casual rides.
+
+-   Bike ride totals change with seasons each year (higher in summer, lower in winter)
+
+-   Total rides have steadily increased year over year from 2013-2019
+
+-   COVID greatly affected bike usage
+
+    -   Member rides decreased greatly in 2020, but are on the rise again
+
+    -   Casual rides increased in 2020, and peaked over members in 2021
+
+        -   Could be a caused by increased telework/decreased commutes, or unstable income/stay at home requirements.
+
+        -   Many people resumed tourism, and increased outdoor fitness activities after 2021. Could be linked to tourism increased and recreational activities.
+
+### Average rides by member type
+
+```{r fig.height=3, fig.width=10}
+weekday_member_type_plot
+```
+
+------------------------------------------------------------------------
+
+This chart shows the total rides 2013-present by each weekday
+
+-   Trends show that member usage is inversely proportional to casual usage
+
+-   Members use bikes more during the weekdays
+
+-   Casual riders use bikes more on weekends
+
+-   Obvious differences in purpose between user types is that the majority of members utilize bikes for work, and casual users utilize more for recreation.
+
+### Rides by Bike Type
+
+```{r fig.height=7, fig.width=13}
+month_weekday_rides_by_member_bike_type_plot
+```
+
+------------------------------------------------------------------------
+This chart shows the total rides per month from 2020-2022 for different bike types as well as user types.  This covers the entire time-frame since electric bikes were introduced.  It is important to understand that as a member, there is an additional charge to utilize electric bikes over the standard.  However, members save 25% as compared to casual users.  
+
+It is difficult to draw definitive conclusions for which type of bike is utilized most.  However, during the later months in the year (October through December), electric bikes are utilized more than classic style bikes for both members and casual users, where as January through September, members utilize the classic bike more.  For casual users, standout months for classic bikes are May through September.  All types of bikes follow the same trend if being used more in warmer months vs cold.  
+
+# Conclusion {.storyboard}
+
+### Conclusion
+
+```{r}
+
+```
